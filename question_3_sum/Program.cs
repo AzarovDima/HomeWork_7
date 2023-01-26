@@ -33,13 +33,14 @@ int GetColums(string message, string errorMessage)
         Console.WriteLine(errorMessage);
     }
 }
-int[,] array = NewArray(rows, colums, -5, 20);
-int[,] middlesumArray = GetMiddleSum(array);
+int[,] array = NewArray(rows, colums, 1, 8);
+
 
 
 Console.WriteLine("Печатаю массив... ");
 PrintArray(array);
-PrintArray(middlesumArray);
+Console.WriteLine("Среднее арифметическое элементов каждого столбца показано ниже:");
+MiddleColums(array);
 int[,] NewArray(int m, int n, int minValue, int maxValue)
 {
     int[,] result = new int[m, n];
@@ -66,22 +67,26 @@ void PrintArray(int[,] inArray)
     }
 }
 
-double[,] GetMiddleSum(double[,] NewArray)
+void MiddleColums(int[,] inArray)
 {
-    int sum = 0;
-    double[,] newresult = new double[i, j];
-    for (double i = 0; i < NewArray.GetLength(0); i++)
+
+    //double middle = 0;
+    for (int j = 0; j < inArray.GetLength(1); j++)
     {
-        for (double j = 0; j < NewArray.GetLength(1); j++)
+        double middle = 0;
+        double sum = 0;
+        for (int i = 0; i < inArray.GetLength(0); i++)
         {
-            sum[i] += NewArray[j, i];
+            sum += inArray[i, j];
+            middle = Math.Round(sum / inArray.GetLength(0), 1);
 
         }
+
+        Console.Write($"{middle} ");
     }
-    sum = sum[i] / NewArray.GetLength(0);
-    newresult = new double[i, j];
-    return newresult;
 }
+
+
 
 
 
